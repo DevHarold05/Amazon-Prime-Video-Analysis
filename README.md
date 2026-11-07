@@ -133,10 +133,3 @@ The dataset contains information such as:
 
 **Note:** This project analyzes catalogue metadata. It does not measure actual views, subscriptions, revenue, or customer behavior.
 
-
-
-
-
----
-
-⭐ If you find this project interesting, feel free to explore the repository!
