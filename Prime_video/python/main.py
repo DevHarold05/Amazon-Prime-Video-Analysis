@@ -3,8 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-# Indiquez le chemin vers votre fichier CSV (par exemple sur votre clé USB ou dossier)
-# Remplacez le chemin par l'emplacement réel de votre fichier
+
 chemin_fichier = "D:/Prime_video/amazon_prime_titles.csv" 
 
 # Charger le dataset
@@ -276,8 +275,7 @@ print("Nombre de films après traitement :", len(films_analyse))
 print("\n=== NOUVELLES STATISTIQUES ===")
 print(films_analyse["duration_value"].describe())
 
-#-----------------------------------------------#
-# ================== TOUS LES GRAPHIQUES DANS UNE SEULE FENÊTRE ==================
+# ================== TOUS LES GRAPHIQUES ==================
 fig, axes = plt.subplots(3, 3, figsize=(22, 14))
 fig.suptitle("Analyse du catalogue Amazon Prime Video", fontsize=20, fontweight="bold")
 
