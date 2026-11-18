@@ -1,4 +1,3 @@
-
 USE [Amazon Prime Video DW];
 GO
 
