@@ -3,8 +3,7 @@ USE [Amazon Prime Video DW];
 GO
 
 ---------------------------------------------
---1. LOAD DIMENSION TYPE
----------------------------------------------
+--1.DIMENSION TYPE
 
 INSERT INTO Dim_Type (type_name)
 SELECT DISTINCT LTRIM(RTRIM(type))
@@ -14,8 +13,7 @@ WHERE type IS NOT NULL
 GO
 
 ---------------------------------------------
--- 2. LOAD DIMENSION RATING
----------------------------------------------
+--2.DIMENSION RATING
 
 INSERT INTO Dim_Rating (rating_name)
 SELECT DISTINCT LTRIM(RTRIM(rating))
@@ -24,9 +22,8 @@ WHERE rating IS NOT NULL
   AND LTRIM(RTRIM(rating)) <> '';
 GO
 
--- ==========================================
--- 3. LOAD DIMENSION YEAR
--- ==========================================
+---------------------------------------------
+-- 3.DIMENSION YEAR
 
 INSERT INTO Dim_AnneeSortie (annee_sortie)
 SELECT DISTINCT release_year
@@ -35,8 +32,7 @@ WHERE release_year IS NOT NULL;
 GO
 
 ---------------------------------------------
--- 4. LOAD DIMENSION COUNTRY
----------------------------------------------
+-- 4.DIMENSION COUNTRY
 
 INSERT INTO Dim_Pays (pays_nom)
 SELECT DISTINCT LTRIM(RTRIM(s.value))
@@ -47,8 +43,8 @@ WHERE a.country IS NOT NULL
 GO
 
 ---------------------------------------------
--- 5. LOAD DIMENSION GENRE
----------------------------------------------
+-- 5.DIMENSION GENRE
+  
 INSERT INTO Dim_Genre (genre_nom)
 SELECT DISTINCT LTRIM(RTRIM(s.value))
 FROM [Amazon Prime Video DB].dbo.Stg_AmazonPrimeVideo AS a
@@ -58,8 +54,7 @@ WHERE a.listed_in IS NOT NULL
 GO
 
 ---------------------------------------------
--- 6. LOAD FACT TABLE
----------------------------------------------
+-- 6.FACT TABLE
 
 INSERT INTO Fait_Contenu (
     show_id,
@@ -94,8 +89,7 @@ LEFT JOIN Dim_AnneeSortie AS y
 GO
 
 ---------------------------------------------
--- 7. LOAD BRIDGE COUNTRY
----------------------------------------------
+-- 7.BRIDGE COUNTRY
 
 INSERT INTO Bridge_Contenu_Pays (contenu_sk, pays_sk)
 SELECT DISTINCT
@@ -110,8 +104,7 @@ INNER JOIN Dim_Pays AS p
 GO
 
 ---------------------------------------------
--- 8. LOAD BRIDGE GENRE
----------------------------------------------
+-- 8.BRIDGE GENRE
 
 INSERT INTO Bridge_Contenu_Genre (contenu_sk, genre_sk)
 SELECT DISTINCT
